@@ -1,0 +1,81 @@
+---
+---
+{% comment %}
+    Empty front matter to force jekyll processing.
+{% endcomment %}
+
+<!doctype html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>{{ site.title }}</title>
+        <meta name="author" content="{{ site.author }}" />
+        <meta name="description" content="{{ site.description }}" />
+
+        <!-- Destyle CSS -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/destyle.css@3.0.0/destyle.min.css" />
+
+        <!-- UIkit CSS -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/uikit@3.7.3/dist/css/uikit.min.css" />
+
+        <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
+    </head>
+
+    <body class="markdown-body container">
+        <header class="sidebar uk-background-secondary uk-light uk-padding-large">
+            {% include header.html %}
+        </header>
+        
+        <main class="content uk-background-muted uk-padding-large">
+            <div class="content-article uk-padding-large uk-background-default uk-box-shadow-medium"">
+                <article class="uk-article">
+                    <h1 class="uk-article-title">
+                        <a class="uk-link-reset" href="">
+                            {{ page.title }}
+                        </a>
+                    </h1>
+                    
+                    {% if page.meta %}
+                        <p class="uk-article-meta">{{ page.meta }}</p>
+                    {% endif %}
+    
+                    {% if page.lead %}
+                        <p class="uk-text-lead">{{ page.lead }}</p>
+                    {% endif %}
+
+                    <!-- <hr class="uk-divider-icon" /> -->
+        
+                    <section>
+                        {{ content }}
+                    </section>
+                </article>
+            </div>
+        </main>
+    </body>
+
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.3/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.3/dist/js/uikit-icons.min.js"></script>
+
+    <script>
+        // Add the 'uk-active' class to the currently active page
+        const navs = document.getElementsByClassName('navigation');
+        if (navs.length > 0)
+        {
+            for (const link of navs[0].getElementsByTagName('a'))
+            {
+                if (link.getAttribute('href') === window.location.pathname)
+                {
+                    const parent = link.parentElement;
+                    if (parent != null)
+                    {
+                        parent.classList.add('uk-active');
+                    }
+                }
+            }
+        }
+    </script>
+</html>
