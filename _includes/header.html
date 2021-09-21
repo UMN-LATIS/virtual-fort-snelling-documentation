@@ -1,9 +1,29 @@
 <ul class="navigation uk-nav uk-nav-default">
     <li class="uk-nav-header">
-        Virtual Fort Snelling Documentation
+        Virtual Fort Snelling
+        <!-- <br/> Documentation -->
     </li>
     <li><a href="{{ site.baseurl | append: '/' }}">Welcome</a></li>
     <li class="uk-parent">
+        <a href="{{ site.baseurl | append: '/pages/contributors' }}">1. For Contributors</a>
+        <ul class="uk-nav-sub">
+            <li><a href="{{ site.baseurl | append: '/pages/contributor-setup' }}">a. Setup</a></li>
+            <li><a href="{{ site.baseurl | append: '/pages/contributor-work' }}">b. Work</a></li>
+            <li><a href="{{ site.baseurl | append: '/pages/contributor-submit' }}">c. Submit</a></li>
+            <li><a href="{{ site.baseurl | append: '/pages/contributor-guides' }}">d. Guides</a></li>
+        </ul>
+    </li>
+    <li class="uk-parent">
+        <a href="{{ site.baseurl | append: '/pages/developers' }}">2. For Developers</a>
+        <ul class="uk-nav-sub">
+            <li><a href="{{ site.baseurl | append: '/pages/developer-setup' }}">a. Setup</a></li>
+            <li><a href="{{ site.baseurl | append: '/pages/developer-work' }}">b. Work</a></li>
+            <li><a href="{{ site.baseurl | append: '/pages/developer-submit' }}">c. Submit</a></li>
+            <li><a href="{{ site.baseurl | append: '/pages/developer-guides' }}">d. Guides</a></li>
+        </ul>
+    </li>
+
+    <!-- <li class="uk-parent">
         <a href="{{ site.baseurl | append: '/pages/getting-started' }}">1. Getting Started</a>
         <ul class="uk-nav-sub">
             <li><a href="{{ site.baseurl | append: '/pages/software' }}">a. Software</a></li>
@@ -11,6 +31,14 @@
             <li><a href="{{ site.baseurl | append: '/pages/working' }}">c. Workflow Tips</a></li>
         </ul>
     </li>
+    <li class="uk-parent">
+        <a href="{{ site.baseurl | append: '/pages/workflow-guides' }}">2. Workflow Guides</a>
+        <ul class="uk-nav-sub">
+            <li><a href="{{ site.baseurl | append: '/pages/guides/adding-models' }}">a. Adding new models</a></li>
+            <li><a href="{{ site.baseurl | append: '/pages/guides/adding-ui' }}">b. Adding new UI pages</a></li>
+        </ul>
+    </li> -->
+
     <!-- <li class="uk-parent">
         <a href="{{ site.baseurl | append: '/pages/project-structure' }}">2. Project Structure</a>
         <ul class="uk-nav-sub">
@@ -21,11 +49,4 @@
             <li><a href="{{ site.baseurl | append: '/pages/folders/unity' }}">e. unity</a></li>
         </ul>
     </li> -->
-    <li class="uk-parent">
-        <a href="{{ site.baseurl | append: '/pages/workflow-guides' }}">2. Workflow Guides</a>
-        <ul class="uk-nav-sub">
-            <li><a href="{{ site.baseurl | append: '/pages/guides/adding-models' }}">a. Adding new models</a></li>
-            <li><a href="{{ site.baseurl | append: '/pages/guides/adding-ui' }}">b. Adding new UI pages</a></li>
-        </ul>
-    </li>
 </ul>
