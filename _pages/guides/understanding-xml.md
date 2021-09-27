@@ -291,15 +291,19 @@ The action-argument system is outlined later on in section `5.6`.
 The following code would teleport a player to (5, 4, 3) and set their pitch and yaw to (0, 90)
 
 ```xml
-<button
-    title="Teleport"
-    action-0="player:teleport"
-    action-0-argument-0="5"
-    action-0-argument-1="4"
-    action-0-argument-2="3"
-    action-0-argument-3="0"
-    action-0-argument-4="90"
-/>
+---
+---
+<page>
+    <button
+        title="Teleport"
+        action-0="player:teleport"
+        action-0-argument-0="5"
+        action-0-argument-1="4"
+        action-0-argument-2="3"
+        action-0-argument-3="0"
+        action-0-argument-4="90"
+    />
+</page>
 ```
 
 ![button]({{ site.baseurl | append: '/assets/img/xml_guide/button.png' }})
@@ -308,10 +312,14 @@ The following code would teleport a player to (5, 4, 3) and set their pitch and 
 The following code would open the url in the input field. (Note that the content of the input field is implicitly used as `action-0-argument-0`)
 
 ```xml
-<input
-    placeholder="Enter a url to open..."
-    action-0="application:open-url"
-/>
+---
+---
+<page>
+    <input
+        placeholder="Enter a url to open..."
+        action-0="application:open-url"
+    />
+</page>
 ```
 
 ![input]({{ site.baseurl | append: '/assets/img/xml_guide/input.png' }})
@@ -320,14 +328,18 @@ The following code would open the url in the input field. (Note that the content
 The following code would open the commander's house menu page, and set the year to 1820
 
 ```xml
-<icon-button
-    src="/assets/example/arrow.png"
-    title="Commander's House"
-    action-0="history:set-year"
-    action-0-argument-0="1820"
-    action-1="menu:next-page"
-    action-1-argument-0="commanders-house"
-/>
+---
+---
+<page>
+    <icon-button
+        src="/assets/example/arrow.png"
+        title="Commander's House"
+        action-0="history:set-year"
+        action-0-argument-0="1820"
+        action-1="menu:next-page"
+        action-1-argument-0="commanders-house"
+    />
+</page>
 ```
 
 ![icon-button]({{ site.baseurl | append: '/assets/img/xml_guide/icon-button.png' }})
@@ -335,36 +347,39 @@ The following code would open the commander's house menu page, and set the year 
 The following code sets the year, and closes the menu after **any** of the buttons in the timeline are clicked
 
 ```xml
+---
+---
+<page>
+    <timeline
+        collapsible="true"
+        title="Timeline"
+        description="A set of years"
+        action-0="menu:close"
+    >
+        <timeline-button
+            year="1820"
+            title="1820"
+            action-0="history:set-year"
+            action-0-argument-0="1820"
+        />
 
-<timeline
-    collapsible="true"
-    title="Timeline"
-    description="A set of years"
-    action-0="menu:close"
->
-    <timeline-button
-        year="1820"
-        title="1820"
-        action-0="history:set-year"
-        action-0-argument-0="1820"
-    />
+        <timeline-button
+            year="1910"
+            title="1910"
+            description="Something happened in 1910"
+            action-0="history:set-year"
+            action-0-argument-0="1910"
+        />
 
-    <timeline-button
-        year="1910"
-        title="1910"
-        description="Something happened in 1910"
-        action-0="history:set-year"
-        action-0-argument-0="1910"
-    />
-
-    <timeline-button
-        year="2021"
-        title="2021"
-        description="Something REALLY happened in 2021"
-        action-0="history:set-year"
-        action-0-argument-0="2021"
-    />
-</timeline>
+        <timeline-button
+            year="2021"
+            title="2021"
+            description="Something REALLY happened in 2021"
+            action-0="history:set-year"
+            action-0-argument-0="2021"
+        />
+    </timeline>
+</page>
 ```
 
 ![timeline]({{ site.baseurl | append: '/assets/img/xml_guide/timeline.png' }})
