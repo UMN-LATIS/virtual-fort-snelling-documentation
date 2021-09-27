@@ -7,6 +7,14 @@ author: "AISOS"
 description: "Virtual Fort Snelling Documentation"
 email: "aisos@umn.edu"
 
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter_opts:
+    default_lang: html
+    css_class   : 'highlight'
+
 # User collections.
 collections:
     pages:

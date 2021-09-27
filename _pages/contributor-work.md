@@ -4,13 +4,15 @@ meta: For contributors
 # lead: This is the page lead text
 ---
 
-- make changes
-    - what kind of changes can I make? and how? (make this a separate subpage)
-- commit & push
-- wait for site to update
-- enable development server in app
-- restart app to test content
 
+## 1. Modify the content
 
+- Add and/or modify content in your fork of the data repository
 
-link to guide "what kind of changes can i make?"
+## 2. Load your fork in the app
+
+- `Options > Developer Options > Development url server`
+
+## 3. Verify everything works as intended
+
+- check for messages in `Options > Developer Options > Log`

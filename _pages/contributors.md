@@ -5,8 +5,8 @@ title: Contributors
 # lead: This is the page lead text
 ---
 
-Welcome
+So you want to contribute content? Great!
 
-want to contribute content?
+This guide will help you get up and running with writing your own content, testing it locally, and proposing your changes to the experience.
 
-virtual fort snelling project uses an easy to learn XML-like markup language to describe the menu in the app.
+The Virtual Fort Snelling experience uses specially formatted XML document(s) to describe the content within the app, so familiarity with XML is assumed.
