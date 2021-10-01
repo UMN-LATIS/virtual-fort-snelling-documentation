@@ -260,7 +260,7 @@ The action-argument system is outlined later on in section `5.6`.
         </tr>
         <tr>
             <td>player:teleport</td>
-            <td>either 3 floats (position x, y, and z), or 5 floats (position x, y, and z, pitch, and yaw)</td>
+            <td>either 3 floats (position x, y, and z), 5 floats (position x, y, and z, normalizedYaw, normalizedPitch), or 6 floats (position x, y, and z, normalizedYaw, normalizedPitch, and normalizedZoom)</td>
             <td>Teleports the player to the specified position, and optionally points the camera in the specified direction</td>
         </tr>
         <tr>
