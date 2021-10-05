@@ -4,9 +4,35 @@ title: Understanding XML
 # lead: This is the page lead text
 ---
 
-## 1. Front-matter
+**General**
+- [Front-matter](#front-matter)
+- [\<page\>](#page)
+- [\<divider\>](#divider)
 
-All `.xml` files must contain the following as the first lines of the file.
+**Text**
+- [\<title\>](#title)
+- [\<subtitle\>](#subtitle)
+- [\<body\>](#body)
+- [\<caption\>](#caption)
+
+**Multimedia**
+- [\<image\>](#image)
+- [\<gallery\>](#gallery)
+    - [\<gallery-image\>](#gallery-image)
+- [\<audio\>](#audio)
+
+**Interaction**
+- [Actions](#actions)
+- [\<button\>](#button)
+- [\<icon-button\>](#icon-button)
+- [\<input\>](#input)
+- [\<timeline\>](#timeline)
+    - [\<timeline-button\>](#timeline-button)
+
+
+## Front-matter
+
+All `.xml` files **must** contain the following as the first lines of the file.
 
 ```
 ---
@@ -15,11 +41,11 @@ All `.xml` files must contain the following as the first lines of the file.
 
 These lines are referred to as the "front-matter", and they tell Github to process the page so it can be loaded in the app.
 
-## 2. \<page\> Tag
+## \<page\>
 
-After the front matter, all future content must be wrapped in a `<page>` tag.
+After the front matter, all further content must be wrapped in a `<page>` tag.
 
-```html
+```xml
 ---
 ---
 <page>
@@ -27,76 +53,73 @@ After the front matter, all future content must be wrapped in a `<page>` tag.
 </page>
 ```
 
-## 3. Text Tags
+## \<divider\>
 
-### 3.1 \<title\>
-
-The `<title>` tag produces text in a large, bold font. It is similar to the `<h1>` tag in HTML.
-
-### 3.2 \<subtitle\>
-
-The `<subtitle>` tag produces text in a slightly smaller font than the title. It is similar to the `<h2>` tag in HTML.
-
-### 3.3 \<body\>
-
-The `<body>` tag produces text in a regular font suitable for reading. It is similar to the `<p>` tag in HTML.
-
-### 3.4 \<caption\>
-
-The `<caption>` tag produces smaller text in a lighter font.
-
-### 3.5 Examples
-
-For example, the following file
+The `<divider>` tag inserts a dividing line between the prior and following content.
 
 ```xml
 ---
 ---
 <page>
-    <title>The Aliens Invade!</title>
-
-    <subtitle>One Local Man Has The Scoop</subtitle>
-
-    <body>"Yeah, they came down last night I reckon" says local farmer J. T.</body>
-
-    <body>"I hope they're friendly," he adds.</body>
-
-    <caption>(We have since learned, they are).</caption>
+    <body>Here's some text</body>
+    <divider />
+    <body> Here's more text</body>
 </page>
 ```
 
-will produce
+![divider]({{ site.baseurl | append: '/assets/img/xml_guide/divider.png' }})
 
-![text]({{ site.baseurl | append: '/assets/img/xml_guide/text.png' }})
+## \<title\>
 
-## 4. Multimedia Tags
+The `<title>` tag renders the text within in a large, bold font. It is similar to the `<h1>` tag in HTML.
 
-### 4.1 \<image\>
+## \<subtitle\>
 
-The `<image>` tag produces an image.
+The `<subtitle>` tag renders the text within in a slightly smaller font than the title. It is similar to the `<h2>` tag in HTML.
 
-It must contain the following attribute(s):
-- `src`: a link to the image to display
+## \<body\>
 
-And can optionally contain the following attribute(s):
-- `title`: a title to display under the image
-- `description`: a subtitle to display under the image
+The `<body>` tag renders the text within in a regular font suitable for reading. It is similar to the `<p>` tag in HTML.
 
-### 4.2 \<audio\>
+## \<caption\>
 
-The `<audio>` tag produces a playable audio clip.
+The `<caption>` tag renders the text within in a small, light-colored font.
 
-It must contain the following attribute(s):
-- `src`: a link to the audio clip to play when clicked
+## \<image\>
 
-And can optionally contain the following attribute(s):
-- `icon-src`: a link to an icon to display on the button (e.g. the album art)
-- `title`: a title to display on the button (e.g. the song title)
-- `description`: a subtitle to display on the button (e.g. the artist name)
 
-### 4.3 Examples
+The `<image>` tag renders an image based on the provided attributes. When clicked, the image will expand into a full-screen view.
 
-For example, the following file
+<table class="uk-table uk-table-divider uk-table-justify">
+    <thead>
+        <tr>
+            <th>Attribute</th>
+            <th>Requirement</th>
+            <th>Argument</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>src</code></td>
+            <td>required</td>
+            <td>a link to the image file (relative to the <a href="https://github.com/UMN-LATIS/virtual-fort-snelling-data/tree/main/">root</a> directory of the data repository)</td>
+        </tr>
+        <tr>
+            <td><code>title</code></td>
+            <td>optional</td>
+            <td>a title to display under the image</td>
+        </tr>
+        <tr>
+            <td><code>description</code></td>
+            <td>optional</td>
+            <td>a subtitle to display under the image</td>
+        </tr>
+    </tbody>
+</table>
+
+The source image file **must** be either `.png`, or `.jpg`.
+
+### Example
 
 ```xml
 ---
@@ -107,7 +130,115 @@ For example, the following file
         title="Scooby Doo"
         description="Where are you?"
     />
+</page>
+```
 
+![image]({{ site.baseurl | append: '/assets/img/xml_guide/image.png' }})
+
+
+## \<gallery\>
+
+The `<gallery>` tag is similar to the `<image>` tag, in that it displays a single image. The difference is that, when the image is tapped, it expands into a full-screen view with "previous" and "next" controls to cycle through the galleries content.
+
+<table class="uk-table uk-table-divider uk-table-justify">
+    <thead>
+        <tr>
+            <th>Attribute</th>
+            <th>Requirement</th>
+            <th>Argument</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>src</code></td>
+            <td>required</td>
+            <td>a link to the cover image file (relative to the <a href="https://github.com/UMN-LATIS/virtual-fort-snelling-data/tree/main/">root</a> directory of the data repository)</td>
+        </tr>
+        <tr>
+            <td><code>title</code></td>
+            <td>optional</td>
+            <td>a title to display under the cover image</td>
+        </tr>
+        <tr>
+            <td><code>description</code></td>
+            <td>optional</td>
+            <td>a subtitle to display under the cover image</td>
+        </tr>
+    </tbody>
+</table>
+
+The `<gallery>` tag can only contain `<gallery-image>` tags and comments as children.
+
+### \<gallery-image\>
+
+The `<gallery-image>` tag should only be used within a `<gallery>` tag. It is otherwise identical to the `<image>` tag.
+
+The source image files **must** be either `.png`, or `.jpg`.
+
+### Example
+
+```xml
+---
+---
+<page>
+    <gallery
+        src="/assets/example/coverphoto.png"
+        title="A Gallery"
+    >
+        <gallery-image src="/assets/example/gallery1.png" title="Alpha">
+        <gallery-image src="/assets/example/gallery2.png" title="Beta">
+        <gallery-image src="/assets/example/gallery3.png" title="Gamma">
+    </gallery>
+</page>
+```
+![gallery]({{ site.baseurl | append: '/assets/img/xml_guide/gallery.png' }})
+
+![galleryfull]({{ site.baseurl | append: '/assets/img/xml_guide/galleryfull.png' }})
+
+## \<audio\>
+
+The `<audio>` tag renders an audio player based on the provided attributes. When clicked, the audio player will start/stop playing.
+
+<table class="uk-table uk-table-divider uk-table-justify">
+    <thead>
+        <tr>
+            <th>Attribute</th>
+            <th>Requirement</th>
+            <th>Argument</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>src</code></td>
+            <td>required</td>
+            <td>a link to the audio file (relative to the <a href="https://github.com/UMN-LATIS/virtual-fort-snelling-data/tree/main/">root</a> directory of the data repository)</td>
+        </tr>
+        <tr>
+            <td><code>icon-src</code></td>
+            <td>optional</td>
+            <td>a link to an image file (relative to the <a href="https://github.com/UMN-LATIS/virtual-fort-snelling-data/tree/main/">root</a> directory of the data repository), to be displayed on the audio player</td>
+        </tr>
+        <tr>
+            <td><code>title</code></td>
+            <td>optional</td>
+            <td>a title to display next to the icon</td>
+        </tr>
+        <tr>
+            <td><code>description</code></td>
+            <td>optional</td>
+            <td>a subtitle to display next to the icon</td>
+        </tr>
+    </tbody>
+</table>
+
+The source audio file **must** be either `.mp3`, `.wav`. The source icon file **must** be either `.png`, or `.jpg`.
+
+### Example
+
+```xml
+---
+---
+<page>
     <audio
         src="/assets/example/audio.mp3"
         icon-src="/assets/example/audioicon.png"
@@ -117,92 +248,26 @@ For example, the following file
 </page>
 ```
 
-will produce
-
-![multimedia]({{ site.baseurl | append: '/assets/img/xml_guide/multimedia.png' }})
-
-### 4.4 Notes
-
-**a. Links**
-
-The `src` and `icon-src` attributes are relative to the `assets` directory of the data repository. You **cannot** link to any old content hosted on the web, it must be hosted in the assets directory of the data repository.
-
-**b. Formats**
-
-Images must be in either `.jpg`, or ideally `.png` format.
-
-Audio must be in either `.wav`, or ideally `.mp3` format.
+![audio]({{ site.baseurl | append: '/assets/img/xml_guide/audio.png' }})
 
 
-## 5. Interactive Tags
+## Actions
 
-### 5.1 \<button\>
+All of the interaction-related tags make use of an **action – argument** system. This is defined by a list of action(s)
 
-The `<button>` tag produces a button that users can click to control functionality in the app.
+`action-0="..." action-1="..."`
 
-It must contain the following attribute(s):
-- `title`: a title to display on the button
+and their associated argument(s)
 
-And can optionally contain the following attribute(s):
-- `description`: a description to display on the button
-- all of the action-argument attributes
+`action-0-argument-0="..." action-0-argument-1="..." action-1-argument-0="..."`
 
-The action-argument system is outlined later on in section `5.6`.
+For example, to open the menu and set the app's calendar to 1820, the actions would be
 
-### 5.2 \<icon-button\>
-
-The `icon-button` tag produces a square button with an icon that users can click to control functionality in the app.
-
-It must contain the following attribute(s):
-- `src`: a link to an icon to display on the button
-
-And can optionally contain the following attribute(s):
-- all of the action-argument attributes
-
-The action-argument system is outlined later on in section `5.6`.
-
-### 5.3 \<input\>
-
-The `<input>` tag produces a text field and button that users can type into and click.
-
-It must contain the following attributes:
-- `placeholder`: placeholder text to display before the user has typed anything in
-- `action-0`: the action to execute when the button is clicked (the value of the input field is used as `action-0-argument-0`)
-
-The action-argument system is outlined later on in section `5.6`.
-
-### 5.4 \<timeline\>
-
-The `<timeline>` tag produces a list of buttons, each representing a year.
-
-It can optionally contain the following attribute(s):
-- `collapsible`
-- `title`
-- `description`
-- all of the action-argument attributes
-
-The action-argument system is outlined later on in section `5.6`.
-
-If `collapsible` is set to `true`, then the timeline will be rendered as a button and only expanded into a full timeline view after the button is clicked. (The `title` and `description` attributes are unused if `collapsible` is false).
-
-The `<timeline>` tag can only contain comments and `<timeline-button>` tags as children.
-
-### 5.5 \<timeline-button\>
-
-The `<timeline-button>` tag produces a button within a `<timeline>` tag.
-
-It must contain the following attribute(s):
-- `year`: the year this button represents in the timeline
-
-And can optionally contain the following attribute(s):
-- `title`
-- `description`
-- all of the action-argument attributes
-
-The action-argument system is outlined later on in section `5.6`.
-
-### 5.6 Actions
-
+```xml
+action-0="menu:open"
+action-1="history:set-year"
+action-1-argument-0="1820"
+```
 
 <table class="uk-table uk-table-divider uk-table-justify">
     <thead>
@@ -214,107 +279,219 @@ The action-argument system is outlined later on in section `5.6`.
     </thead>
     <tbody>
         <tr>
-            <td>application:open-url</td>
+            <td><code>application:open-url</code></td>
             <td>any url</td>
             <td>leaves the app and opens the given url in the device's web browser</td>
         </tr>
         <tr>
-            <td>options:swap-hand</td>
+            <td><code>options:swap-hand</code></td>
             <td></td>
             <td>Swaps which side the UI appears on in the app</td>
         </tr>
         <tr>
-            <td>options:swap-theme</td>
+            <td><code>options:swap-theme</code></td>
             <td></td>
             <td>Swaps between light and dark colors</td>
         </tr>
         <tr>
-            <td>menu:toggle</td>
+            <td><code>menu:toggle</code></td>
             <td></td>
             <td>Toggles the menu state (opens it if it's closed, and closes it if it's open)</td>
         </tr>
         <tr>
-            <td>menu:close</td>
+            <td><code>menu:close</code></td>
             <td></td>
             <td>Closes the menu</td>
         </tr>
         <tr>
-            <td>menu:open</td>
+            <td><code>menu:open</code></td>
             <td></td>
             <td>Opens the menu</td>
         </tr>
         <tr>
-            <td>menu:next-page</td>
+            <td><code>menu:next-page</code></td>
             <td>the name of a page (as it appears in the <code>_pages</code> directory, without the <code>.xml</code> at the end)</td>
             <td>Opens the specified page</td>
         </tr>
         <tr>
-            <td>menu:previous-page</td>
+            <td><code>menu:previous-page</code></td>
             <td></td>
             <td>Opens the previously opened page</td>
         </tr>
         <tr>
-            <td>history:set-year</td>
+            <td><code>history:set-year</code></td>
             <td>any integer (e.g. <code>1820</code>)</td>
             <td>Sets the current year that the fort is viewed in</td>
         </tr>
         <tr>
-            <td>player:teleport</td>
+            <td><code>player:teleport</code></td>
             <td>either 3 floats (position x, y, and z), 5 floats (position x, y, and z, normalizedYaw, normalizedPitch), or 6 floats (position x, y, and z, normalizedYaw, normalizedPitch, and normalizedZoom)</td>
             <td>Teleports the player to the specified position, and optionally points the camera in the specified direction</td>
         </tr>
         <tr>
-            <td>player:set-mode</td>
-            <td>either no arguments, <code>first-person</code>, or <code>overview</code></td>
-            <td>sets the camera mode to the specified mode (if no argument is provided, the mode is toggled)</td>
+            <td><code>player:set-mode</code></td>
+            <td><code>toggle</code>, <code>first-person</code>, or <code>overview</code></td>
+            <td>sets the camera mode to the specified mode (if no argument is provided, or the argument is <code>toggle</code>, then the mode is toggled)</td>
         </tr>
         <tr>
-            <td>developer:clear-cache</td>
+            <td><code>developer:clear-cache</code></td>
             <td></td>
             <td>Clears out the cached content stored on device</td>
         </tr>
         <tr>
-            <td>developer:refresh-content</td>
+            <td><code>developer:refresh-content</code></td>
             <td>either no argument, or a url</td>
             <td>reloads all the content from the given url (or the production data repository if no url is specified)</td>
         </tr>
         <tr>
-            <td>developer:toggle-info</td>
+            <td><code>developer:toggle-info</code></td>
             <td></td>
             <td>Toggles a debug overlay containing the FPS, player position, etc.</td>
         </tr>
     </tbody>
 </table>
 
-### 5.7 Examples
+## \<button\>
 
-The following code would teleport a player to (5, 4, 3) and set their pitch and yaw to (0, 90)
+The `<button>` tag renders a button that users can click to control functionality in the app.
+
+<table class="uk-table uk-table-divider uk-table-justify">
+    <thead>
+        <tr>
+            <th>Attribute</th>
+            <th>Requirement</th>
+            <th>Argument</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>title</code></td>
+            <td>optional</td>
+            <td>a title to display on the button</td>
+        </tr>
+        <tr>
+            <td><code>description</code></td>
+            <td>optional</td>
+            <td>a subtitle to display on the button</td>
+        </tr>
+        <tr>
+            <td><code>action-X</code></td>
+            <td>optional</td>
+            <td>an action to perform when the button is clicked</td>
+        </tr>
+        <tr>
+            <td><code>action-X-argument-Y</code></td>
+            <td>optional</td>
+            <td>the Yth argument for the Xth action</td>
+        </tr>
+    </tbody>
+</table>
+
+### Example
 
 ```xml
 ---
 ---
 <page>
+    <!--
+        Clicking this will teleport the player to (5, 4, 3)
+        and set their normalized yaw and pitch to 0.5
+    -->
     <button
         title="Teleport"
         action-0="player:teleport"
         action-0-argument-0="5"
         action-0-argument-1="4"
         action-0-argument-2="3"
-        action-0-argument-3="0"
-        action-0-argument-4="90"
+        action-0-argument-3="0.5"
+        action-0-argument-4="0.5"
     />
 </page>
 ```
 
 ![button]({{ site.baseurl | append: '/assets/img/xml_guide/button.png' }})
 
+## \<icon-button\>
 
-The following code would open the url in the input field. (Note that the content of the input field is implicitly used as `action-0-argument-0`)
+The `<icon-button>` tag renders a square icon button that users can click to control functionality in the app.
+
+<table class="uk-table uk-table-divider uk-table-justify">
+    <thead>
+        <tr>
+            <th>Attribute</th>
+            <th>Requirement</th>
+            <th>Argument</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>src</code></td>
+            <td>required</td>
+            <td>a link to the icon file (relative to the <a href="https://github.com/UMN-LATIS/virtual-fort-snelling-data/tree/main/">root</a> directory of the data repository)</td>
+        </tr>
+        <tr>
+            <td><code>action-X</code></td>
+            <td>optional</td>
+            <td>an action to perform when the button is clicked</td>
+        </tr>
+        <tr>
+            <td><code>action-X-argument-Y</code></td>
+            <td>optional</td>
+            <td>the Yth argument for the Xth action</td>
+        </tr>
+    </tbody>
+</table>
+
+The source icon file **must** be either `.png`, or `.jpg`.
+
+### Example
 
 ```xml
 ---
 ---
 <page>
+    <icon-button
+        src="/assets/example/left-arrow.png"
+        action-0="menu:previous-page"
+    />
+</page>
+```
+
+![icon-button]({{ site.baseurl | append: '/assets/img/xml_guide/icon-button.png' }})
+
+## \<input\>
+
+The `<input>` tag renders a text field and button that users can type into and click to control functionality in the app.
+
+<table class="uk-table uk-table-divider uk-table-justify">
+    <thead>
+        <tr>
+            <th>Attribute</th>
+            <th>Requirement</th>
+            <th>Argument</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>placeholder</code></td>
+            <td>required</td>
+            <td>text to display before the user has entered anything</td>
+        </tr>
+        <tr>
+            <td><code>action-0</code></td>
+            <td>required</td>
+            <td>the action to perform when the submit button is clicked (note that the value of the input field is used as <code>action-0-argument-0</code>)</td>
+        </tr>
+    </tbody>
+</table>
+
+### Example
+
+```xml
+---
+---
+<page>
+    <!-- This will open whatever url the user types in their device's browser -->
     <input
         placeholder="Enter a url to open..."
         action-0="application:open-url"
@@ -324,32 +501,102 @@ The following code would open the url in the input field. (Note that the content
 
 ![input]({{ site.baseurl | append: '/assets/img/xml_guide/input.png' }})
 
+## \<timeline\>
 
-The following code would open the commander's house menu page, and set the year to 1820
+The `<timeline>` tag renders a list of buttons, each representing a year. The correct year is highlighted based on the app calendar.
+
+<table class="uk-table uk-table-divider uk-table-justify">
+    <thead>
+        <tr>
+            <th>Attribute</th>
+            <th>Requirement</th>
+            <th>Argument</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>collapsible</code></td>
+            <td>optional</td>
+            <td><code>true</code> or <code>false</code></td>
+        </tr>
+        <tr>
+            <td><code>title</code></td>
+            <td>optional</td>
+            <td>a title to display on the timeline button (only visible if <code>collapsible</code> is true)</td>
+        </tr>
+        <tr>
+            <td><code>description</code></td>
+            <td>optional</td>
+            <td>a subtitle to display on the timeline button (only visible if <code>collapsible</code> is true)</td>
+        </tr>
+        <tr>
+            <td><code>action-X</code></td>
+            <td>optional</td>
+            <td>an action to perform when <b>any button in the timeline</b> is clicked</td>
+        </tr>
+        <tr>
+            <td><code>action-X-argument-Y</code></td>
+            <td>optional</td>
+            <td>the Yth argument for the Xth action</td>
+        </tr>
+    </tbody>
+</table>
+
+The `<timeline>` tag should only contain `<timeline-button>` tags and comments as children.
+
+### \<timeline-button\>
+
+The `<timeline-button>` tag renders a button within a `<timeline>` tag. If the calendar year matches the buttons year, then the button is highlighted.
+
+<table class="uk-table uk-table-divider uk-table-justify">
+    <thead>
+        <tr>
+            <th>Attribute</th>
+            <th>Requirement</th>
+            <th>Argument</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>year</code></td>
+            <td>required</td>
+            <td>an integer (e.g. <code>1820</code>)</td>
+        </tr>
+        <tr>
+            <td><code>title</code></td>
+            <td>optional</td>
+            <td>a title to display on the button</td>
+        </tr>
+        <tr>
+            <td><code>description</code></td>
+            <td>optional</td>
+            <td>a subtitle to display on the button</td>
+        </tr>
+        <tr>
+            <td><code>action-X</code></td>
+            <td>optional</td>
+            <td>an action to perform when the button is clicked</td>
+        </tr>
+        <tr>
+            <td><code>action-X-argument-Y</code></td>
+            <td>optional</td>
+            <td>the Yth argument for the Xth action</td>
+        </tr>
+    </tbody>
+</table>
+
+### Example
+
 
 ```xml
 ---
 ---
 <page>
-    <icon-button
-        src="/assets/example/arrow.png"
-        title="Commander's House"
-        action-0="history:set-year"
-        action-0-argument-0="1820"
-        action-1="menu:next-page"
-        action-1-argument-0="commanders-house"
-    />
-</page>
-```
 
-![icon-button]({{ site.baseurl | append: '/assets/img/xml_guide/icon-button.png' }})
-
-The following code sets the year, and closes the menu after **any** of the buttons in the timeline are clicked
-
-```xml
----
----
-<page>
+    <!--
+        Closes the menu when ANY button in the timeline is clicked,
+        and sets the calendar to a different year depending on the button.
+    -->
     <timeline
         collapsible="true"
         title="Timeline"
@@ -383,30 +630,3 @@ The following code sets the year, and closes the menu after **any** of the butto
 ```
 
 ![timeline]({{ site.baseurl | append: '/assets/img/xml_guide/timeline.png' }})
-
-## 6. Other Tags
-
-### 6.1 \<divider\>
-
-The `<divider>` tag just inserts a dividing line between content
-
-### 6.2 Examples
-
-For example, the following file
-
-```xml
----
----
-<page>
-    <body>Here's some text</body>
-    <divider />
-    <body> Here's more text</body>
-</page>
-```
-
-will produce
-
-![divider]({{ site.baseurl | append: '/assets/img/xml_guide/divider.png' }})
-
-
-
