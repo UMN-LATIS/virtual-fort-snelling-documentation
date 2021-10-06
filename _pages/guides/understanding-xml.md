@@ -284,16 +284,6 @@ action-1-argument-0="1820"
             <td>leaves the app and opens the given url in the device's web browser</td>
         </tr>
         <tr>
-            <td><code>options:swap-hand</code></td>
-            <td></td>
-            <td>Swaps which side the UI appears on in the app</td>
-        </tr>
-        <tr>
-            <td><code>options:swap-theme</code></td>
-            <td></td>
-            <td>Swaps between light and dark colors</td>
-        </tr>
-        <tr>
             <td><code>menu:toggle</code></td>
             <td></td>
             <td>Toggles the menu state (opens it if it's closed, and closes it if it's open)</td>
@@ -342,11 +332,6 @@ action-1-argument-0="1820"
             <td><code>developer:refresh-content</code></td>
             <td>either no argument, or a url</td>
             <td>reloads all the content from the given url (or the production data repository if no url is specified)</td>
-        </tr>
-        <tr>
-            <td><code>developer:toggle-info</code></td>
-            <td></td>
-            <td>Toggles a debug overlay containing the FPS, player position, etc.</td>
         </tr>
     </tbody>
 </table>
