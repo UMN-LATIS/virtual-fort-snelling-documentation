@@ -25,7 +25,6 @@ title: Understanding XML
 - [Actions](#actions)
 - [\<button\>](#button)
 - [\<icon-button\>](#icon-button)
-- [\<input\>](#input)
 - [\<timeline\>](#timeline)
     - [\<timeline-button\>](#timeline-button)
 
@@ -443,48 +442,6 @@ The source icon file **must** be either `.png`, or `.jpg`.
 ```
 
 ![icon-button]({{ site.baseurl | append: '/assets/img/xml_guide/icon-button.png' }})
-
-## \<input\>
-
-The `<input>` tag renders a text field and button that users can type into and click to control functionality in the app.
-
-<table class="uk-table uk-table-divider uk-table-justify">
-    <thead>
-        <tr>
-            <th>Attribute</th>
-            <th>Requirement</th>
-            <th>Argument</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td><code>placeholder</code></td>
-            <td>required</td>
-            <td>text to display before the user has entered anything</td>
-        </tr>
-        <tr>
-            <td><code>action-0</code></td>
-            <td>required</td>
-            <td>the action to perform when the submit button is clicked (note that the value of the input field is used as <code>action-0-argument-0</code>)</td>
-        </tr>
-    </tbody>
-</table>
-
-### Example
-
-```xml
----
----
-<page>
-    <!-- This will open whatever url the user types in their device's browser -->
-    <input
-        placeholder="Enter a url to open..."
-        action-0="application:open-url"
-    />
-</page>
-```
-
-![input]({{ site.baseurl | append: '/assets/img/xml_guide/input.png' }})
 
 ## \<timeline\>
 
