@@ -8,6 +8,7 @@ title: Understanding XML
 - [Front-matter](#front-matter)
 - [\<page\>](#page)
 - [\<divider\>](#divider)
+- [Platform Conditional](#platform-conditional)
 
 **Text**
 - [\<title\>](#title)
@@ -67,6 +68,30 @@ The `<divider>` tag inserts a dividing line between the prior and following cont
 ```
 
 ![divider]({{ site.baseurl | append: '/assets/img/xml_guide/divider.png' }})
+
+## Platform Conditional
+
+The `platform` attribute can be applied to any non-`<page>` element. Certain values will restrict the element to only be displayed on certain platforms.
+
+For example, an element with the `platform="desktop"` attribute will only appear when the application is running on desktop devices.
+
+The valid attribute arguments are:
+- "mobile"
+- "desktop"
+
+Any other arguments will be ignored.
+
+In general you should not use this! Only use it for situations where an element should only appear on mobile or desktop platforms (like a quit button).
+
+### Example
+
+```
+<button
+    title="Quit"
+    platform="desktop"
+    action-0="application:quit"
+/>
+```
 
 ## \<title\>
 
@@ -283,34 +308,39 @@ action-1-argument-0="1820"
             <td>leaves the app and opens the given url in the device's web browser</td>
         </tr>
         <tr>
+            <td><code>application:quit</code></td>
+            <td></td>
+            <td>quits the application completely. you should be careful to only use this for quit buttons!</td>
+        </tr>
+        <tr>
             <td><code>menu:toggle</code></td>
             <td></td>
-            <td>Toggles the menu state (opens it if it's closed, and closes it if it's open)</td>
+            <td>toggles the menu state (opens it if it's closed, and closes it if it's open)</td>
         </tr>
         <tr>
             <td><code>menu:close</code></td>
             <td></td>
-            <td>Closes the menu</td>
+            <td>closes the menu</td>
         </tr>
         <tr>
             <td><code>menu:open</code></td>
             <td></td>
-            <td>Opens the menu</td>
+            <td>opens the menu</td>
         </tr>
         <tr>
             <td><code>menu:next-page</code></td>
             <td>the name of a page (as it appears in the <code>_pages</code> directory, without the <code>.xml</code> at the end)</td>
-            <td>Opens the specified page</td>
+            <td>opens the specified page</td>
         </tr>
         <tr>
             <td><code>menu:previous-page</code></td>
             <td></td>
-            <td>Opens the previously opened page</td>
+            <td>opens the previously opened page</td>
         </tr>
         <tr>
             <td><code>history:set-year</code></td>
             <td>any integer (e.g. <code>1820</code>)</td>
-            <td>Sets the current year that the fort is viewed in</td>
+            <td>sets the current year that the fort is viewed in</td>
         </tr>
         <tr>
             <td><code>player:teleport</code></td>
@@ -325,7 +355,7 @@ action-1-argument-0="1820"
         <tr>
             <td><code>developer:clear-cache</code></td>
             <td></td>
-            <td>Clears out the cached content stored on device</td>
+            <td>clears out the cached content stored on device</td>
         </tr>
         <tr>
             <td><code>developer:refresh-content</code></td>
@@ -357,6 +387,11 @@ The `<button>` tag renders a button that users can click to control functionalit
             <td><code>description</code></td>
             <td>optional</td>
             <td>a subtitle to display on the button</td>
+        </tr>
+        <tr>
+            <td><code>style</code></td>
+            <td>optional</td>
+            <td>an optional style to apply to the button. valid arguments are "negative", "positive", or nothing (for the default style)</td>
         </tr>
         <tr>
             <td><code>action-X</code></td>
