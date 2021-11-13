@@ -8,11 +8,11 @@ Before you begin developing new content, you'll need to get a few things setup f
 
 ## 1. Get a copy of the app
 
-You'll need to get a copy of the app. Currently the app is only available via Apple's TestFlight platform.
+You'll need to get a copy of the app. Currently the app is available in beta for macOS and Windows platforms.
 
-Please contact [Daniel Shervheim](mailto:sherv029@umn.edu) to get access to TestFlight builds.
+- [Download](https://historyxr.umn.edu/projects/virtual-fort-snelling-beta)
 
-Once you acquire the app, you should open it up and get comfortable with it.
+Once you have acquired the app, you should open it up and get comfortable with it.
 
 ## 2. Make a Github account
 

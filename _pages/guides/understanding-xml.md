@@ -362,6 +362,11 @@ action-1-argument-0="1820"
             <td>either no argument, or a url</td>
             <td>reloads all the content from the given url (or the production data repository if no url is specified)</td>
         </tr>
+        <tr>
+            <td><code>tooltips:disable-on-page</code></td>
+            <td></td>
+            <td>disables all tooltips while the given page is open. (NOTE: this can only be applied as an attribute to a &lt;page&gt; component)</td>
+        </tr>
     </tbody>
 </table>
 
