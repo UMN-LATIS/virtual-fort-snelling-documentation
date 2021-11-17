@@ -291,6 +291,7 @@ For example, to open the menu and set the app's calendar to 1820, the actions wo
 action-0="menu:open"
 action-1="history:set-year"
 action-1-argument-0="1820"
+action-1-argument-1="1820 CE"
 ```
 
 <table class="uk-table uk-table-divider uk-table-justify">
@@ -339,7 +340,7 @@ action-1-argument-0="1820"
         </tr>
         <tr>
             <td><code>history:set-year</code></td>
-            <td>any integer (e.g. <code>1820</code>)</td>
+            <td>any integer (e.g. <code>1820</code>), followed by a string description of the preceding integer</td>
             <td>sets the current year that the fort is viewed in</td>
         </tr>
         <tr>
@@ -590,6 +591,7 @@ The `<timeline-button>` tag renders a button within a `<timeline>` tag. If the c
             title="1820"
             action-0="history:set-year"
             action-0-argument-0="1820"
+            action-0-argument-1="1820 CE"
         />
 
         <timeline-button
@@ -598,6 +600,7 @@ The `<timeline-button>` tag renders a button within a `<timeline>` tag. If the c
             description="Something happened in 1910"
             action-0="history:set-year"
             action-0-argument-0="1910"
+            action-0-argument-1="1910 CE"
         />
 
         <timeline-button
@@ -606,6 +609,7 @@ The `<timeline-button>` tag renders a button within a `<timeline>` tag. If the c
             description="Something REALLY happened in 2021"
             action-0="history:set-year"
             action-0-argument-0="2021"
+            action-0-argument-1="2021 CE"
         />
     </timeline>
 </page>
